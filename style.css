@@ -65,7 +65,7 @@ body::before {
 
 .mlsc {
   position: absolute;
-  bottom: 14px;
+  top: 14px;
   right: 18px;
   height: 125px;
   object-fit: contain;
@@ -77,6 +77,7 @@ body::before {
 .makethon {
   position: absolute;
   top: 14px;
+  left: 18px;
   height: 125px;
   object-fit: contain;
   pointer-events: none;
