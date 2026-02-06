@@ -11,10 +11,10 @@ const jackpotSound = document.getElementById("jackpotSound");
 
 const SYMBOLS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-const SYMBOL_HEIGHT = 120;
+const SYMBOL_HEIGHT = 150;
 const STRIP_SIZE = 80;
 
-const speeds = [6, 7.5, 9]; // px per frame ~ visible difference
+const speeds = [6, 7.5, 15]; // px per frame ~ visible difference
 
 let rafIds = [0, 0, 0];
 let positions = [0, 0, 0];
@@ -26,7 +26,7 @@ let audioUnlocked = false;
 function unlockAudio() {
   if (audioUnlocked) return;
 
-  jackpotSound.volume = 0.8;
+  jackpotSound.volume = 0;
   jackpotSound
     .play()
     .then(() => {
@@ -64,6 +64,7 @@ function startSpin() {
   const machine = document.querySelector(".machine");
 
   machine.classList.remove("win");
+  document.body.classList.remove("win-dim");
   jackpotSound.pause();
   jackpotSound.currentTime = 0;
 
@@ -142,15 +143,18 @@ function checkWin() {
   const machine = document.querySelector(".machine");
 
   machine.classList.remove("win");
+  document.body.classList.remove("win-dim");
 
-  if (vals.every((v) => "7" === v)) {
-    statusText.textContent = "🔥 PERFECT 777!";
-    statusText.style.color = "lime";
+  if (vals.every((v) => "8" === v)) {
+    statusText.textContent = "🔥 PERFECT 888!";
+    statusText.style.color = "gold";
 
     machine.classList.add("win");
+    document.body.classList.add("win-dim");
     jackpotSound.currentTime = 0;
     const p = jackpotSound.play();
     if (p) p.catch(() => {});
+    fireConfetti();
   } else if (vals[0] === vals[1] && vals[1] === vals[2]) {
     statusText.textContent = "🎯 MATCH!";
     statusText.style.color = "gold";
@@ -184,3 +188,39 @@ lever.addEventListener("click", () => {
     document.querySelector(".machine").classList.remove("shake");
   }, 180);
 });
+
+/* ===== FULLSCREEN TOGGLE ===== */
+
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() !== "f") return;
+
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+});
+/* ===== CONFETTI BLAST ON JACKPOT ===== */
+
+const confettiLayer = document.querySelector(".confetti-layer");
+
+function fireConfetti() {
+  confettiLayer.innerHTML = "";
+  confettiLayer.classList.add("active");
+
+  for (let i = 0; i < 90; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = Math.random() * 0.6 + "s";
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    confettiLayer.appendChild(c);
+  }
+
+  setTimeout(() => {
+    confettiLayer.classList.remove("active");
+    confettiLayer.innerHTML = "";
+  }, 2200);
+}

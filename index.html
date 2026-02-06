@@ -6,9 +6,32 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <img src="public/mlsc.png" class="mlsc" />
+    <img src="public/makethon.png" class="makethon" />
+    <div class="floor-reflection"></div>
+    <div class="crowd-glow"></div>
+
+    <div class="casino-silhouettes">
+      <div class="sil slot1"></div>
+      <div class="sil slot2"></div>
+      <div class="sil slot3"></div>
+      <div class="sil slot4"></div>
+    </div>
+
     <div class="slot-wrapper">
       <div class="machine">
-        <h1>🎰 777 SLOT</h1>
+        <h1>888 SLOT</h1>
+        <div class="top-panel"></div>
+        <div class="marquee-lights"></div>
+        <div class="bulb-row"></div>
+
+        <div class="jackpot-banner">JACKPOT!</div>
+
+        <div class="led-strip">
+          <div class="led-text">
+            WELCOME TO 888 SLOT • PULL THE LEVER • BIG WINS AWAIT •
+          </div>
+        </div>
 
         <div class="window">
           <div class="reel-container">
@@ -27,11 +50,13 @@
         <p id="status"></p>
         <div class="win-explosion"></div>
         <div class="machine-footer"></div>
+        <div class="lever-mount"></div>
         <div class="lever">
           <div class="lever-bar">
             <div class="lever-knob"></div>
           </div>
         </div>
+        <div class="side-glow-right"></div>
       </div>
     </div>
     <audio id="jackpotSound" preload="auto">
@@ -40,6 +65,8 @@
         type="audio/mpeg"
       />
     </audio>
+    <div class="confetti-layer"></div>
+
     <script src="script.js"></script>
   </body>
 </html>
