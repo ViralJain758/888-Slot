@@ -948,3 +948,16 @@ body.win-dim::after {
     opacity: 0;
   }
 }
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .mlsc,
+  .makethon {
+    top: 10px;
+    height: 80px;
+  }
+
+  .slot-wrapper {
+    z-index: 100;
+    margin-top: 5px;
+  }
+}

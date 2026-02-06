@@ -224,3 +224,29 @@ function fireConfetti() {
     confettiLayer.innerHTML = "";
   }, 2200);
 }
+
+/* =====================================================
+   RESPONSIVE AUTO SCALE
+===================================================== */
+
+function fitMachine() {
+  const wrapper = document.querySelector(".slot-wrapper");
+
+  const vh = window.innerHeight;
+  const machine = document.querySelector(".machine");
+
+  const rect = machine.getBoundingClientRect();
+
+  const usable = vh * 0.92;
+
+  let scale = usable / rect.height;
+
+  scale = Math.min(Math.max(scale, 0.7), 1.25);
+
+  wrapper.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", fitMachine);
+window.addEventListener("orientationchange", fitMachine);
+
+setTimeout(fitMachine, 100);
