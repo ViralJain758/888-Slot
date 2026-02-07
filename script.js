@@ -7,37 +7,18 @@ const reels = [
 const btn = document.getElementById("controlBtn");
 const statusText = document.getElementById("status");
 const lever = document.querySelector(".lever");
-const jackpotSound = document.getElementById("jackpotSound");
 
 const SYMBOLS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const SYMBOL_HEIGHT = 150;
 const STRIP_SIZE = 80;
 
-const speeds = [6, 7.5, 15]; // px per frame ~ visible difference
+const speeds = [6, 6, 6]; // px per frame ~ visible difference
 
 let rafIds = [0, 0, 0];
 let positions = [0, 0, 0];
 let running = [false, false, false];
 let stopIndex = 0;
-
-let audioUnlocked = false;
-
-function unlockAudio() {
-  if (audioUnlocked) return;
-
-  jackpotSound.volume = 0;
-  jackpotSound
-    .play()
-    .then(() => {
-      jackpotSound.pause();
-      jackpotSound.currentTime = 0;
-      audioUnlocked = true;
-    })
-    .catch(() => {});
-}
-
-document.addEventListener("click", unlockAudio, { once: true });
 
 function buildStrip(reel) {
   reel.innerHTML = "";
@@ -65,8 +46,6 @@ function startSpin() {
 
   machine.classList.remove("win");
   document.body.classList.remove("win-dim");
-  jackpotSound.pause();
-  jackpotSound.currentTime = 0;
 
   statusText.textContent = "";
   btn.textContent = "STOP";
@@ -143,6 +122,7 @@ function checkWin() {
   const machine = document.querySelector(".machine");
 
   machine.classList.remove("win");
+  machine.classList.remove("jackpot");
   document.body.classList.remove("win-dim");
 
   if (vals.every((v) => "8" === v)) {
@@ -150,21 +130,16 @@ function checkWin() {
     statusText.style.color = "gold";
 
     machine.classList.add("win");
+    machine.classList.add("jackpot");
     document.body.classList.add("win-dim");
-    jackpotSound.currentTime = 0;
-    const p = jackpotSound.play();
-    if (p) p.catch(() => {});
     fireConfetti();
   } else if (vals[0] === vals[1] && vals[1] === vals[2]) {
-    statusText.textContent = "🎯 MATCH!";
+    statusText.textContent = "🎯 MATCH! BUT 888 WAS EXPECTED!";
     statusText.style.color = "gold";
 
     machine.classList.add("win");
-    jackpotSound.currentTime = 0;
-    const p = jackpotSound.play();
-    if (p) p.catch(() => {});
   } else {
-    statusText.textContent = "Miss!";
+    statusText.textContent = "💀 Miss!";
     statusText.style.color = "orange";
   }
 }

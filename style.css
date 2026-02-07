@@ -659,7 +659,7 @@ body .bg-rays {
 
 /* appear only on win */
 
-.machine.win .jackpot-banner {
+.machine.win.jackpot .jackpot-banner {
   opacity: 1;
   animation:
     jackpotPop 0.6s ease-out,
