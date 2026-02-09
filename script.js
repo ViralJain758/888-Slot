@@ -164,6 +164,25 @@ lever.addEventListener("click", () => {
   }, 180);
 });
 
+document.addEventListener("keydown", (e) => {
+  if (!["Enter", "Space"].includes(e.code)) return;
+  if (leverLocked) return;
+
+  leverLocked = true;
+
+  triggerSpin();
+
+  document.querySelector(".machine").classList.add("shake");
+
+  lever.classList.add("pull");
+
+  setTimeout(() => {
+    lever.classList.remove("pull");
+    leverLocked = false;
+    document.querySelector(".machine").classList.remove("shake");
+  }, 180);
+});
+
 /* ===== FULLSCREEN TOGGLE ===== */
 
 document.addEventListener("keydown", (e) => {
