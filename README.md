@@ -33,15 +33,15 @@ Open `index.html` in a browser to experience the full visual effect.
 
 ### Jackpot Celebration
 
-![Jackpot](screenshots/jackpot.png)
+![Jackpot](screenshots/Jackpot.png)
 
 ### Just A Match
 
-![Match](screenshots/match.png)
+![Match](screenshots/Match.png)
 
 ### Missed
 
-![Missed](screenshots/miss.png)
+![Missed](screenshots/Miss.png)
 
 ---
 
@@ -112,7 +112,7 @@ No build tools required.
 ### 1️⃣ Clone the repository
 
 ```
-git clone https://github.com/your-username/888-slot-machine.git
+git clone https://github.com/ViralJain758/888-Slot.git
 ```
 
 ### 2️⃣ Open the folder
@@ -131,7 +131,7 @@ Open `index.html` directly
 ## 👤 Author
 
 **Viral Jain**  
-Engineering Student & Frontend Developer
+Engineering Student & Software Developer
 
 ---
 
